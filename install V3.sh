@@ -46,6 +46,43 @@ sed -i 's/ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/' ~/.zshrc || true
 echo -e "\n\033[1;92m[ BRUTAL ] SELESAI TANPA ERROR 🔥🔥🔥\033[0m"
 clear
 
+# ===================== JEDAG JEDUG MODE =====================
+echo -e "\033[1;35mMengaktifkan JEDAG JEDUG MODE...\033[0m"
+sleep 0.3
+
+# Efek lampu kedip jedag-jedug
+for i in {1..6}; do
+    printf "\033[?5h"   # flash
+    sleep 0.07
+    printf "\033[?5l"   # unflash
+    sleep 0.07
+done
+
+# ASCII geter brutal
+clear
+for i in {1..3}; do
+    echo -e "\033[1;36m"
+    echo "██╗███╗   ███╗███████╗██╗   ██╗"
+    echo "██║████╗ ████║██╔════╝██║   ██║"
+    echo "██║██╔████╔██║█████╗  ██║   ██║"
+    echo "██║██║╚██╔╝██║██╔══╝  ██║   ██║"
+    echo "██║██║ ╚═╝ ██║███████╗╚██████╔╝"
+    echo "╚═╝╚═╝     ╚═╝╚══════╝ ╚═════╝ "
+    echo -e "\033[0m"
+    sleep 0.12
+    clear
+done
+
+# Jedag Jedug RGB Intro
+for i in {1..20}; do
+    COLOR=$((31 + (RANDOM % 7)))
+    echo -ne "\033[1;${COLOR}mJEDAG JEDUG MODE ACTIVE!!!\033[0m\r"
+    sleep 0.05
+done
+echo
+echo -e "\033[1;32m[ READY ] Terminal siap GETER 💥⚡🔥\033[0m"
+echo
+
 # Warna
 CYAN="\033[1;36m"
 GREEN="\033[1;32m"
