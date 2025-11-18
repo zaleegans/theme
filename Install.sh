@@ -1,89 +1,179 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# ZALEE THEME INSTALLER – FINAL POLISHED VERSION
 
-# ==============================
-#     ZaleeTheme Installer
-# ==============================
+set -euo pipefail
+IFS=$'\n\t'
 
-# Warna
-RED="\e[31m"
-GREEN="\e[32m"
-CYAN="\e[36m"
-YELLOW="\e[33m"
-RESET="\e[0m"
+# ------------------------------
+# KONFIGURASI
+# ------------------------------
+PANEL_PATH_DEFAULT="/var/www/pterodactyl"
+TMPDIR="/tmp/theme_installer_$$"
+BACKUPDIR="/root/theme_backups"
 
-clear
+# ZIP URL (SEMUA ZIP SUDAH SESUAI)
+ZALEE_URL="https://github.com/user-attachments/files/23604719/ZaleeTheme.zip"
+NEBULA_URL="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/Nebula-main.zip"
+ARIX_URL="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/ArixTheme.zip"
+REGGED_URL="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/Regged.Theme.Pterodactyl.FREE.-.v1.0.zip"
+ENIGMA_URL="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/Enigma_Premium.zip"
 
-echo -e "${CYAN}"
-echo "=========================================="
-echo "        ZaleeTheme - Theme Installer       "
-echo "=========================================="
-echo -e "${RESET}"
+# ------------------------------
+# UTILITAS (WARNA & HELPERS)
+# ------------------------------
+BBLUE="\033[1;34m"
+BYELLOW="\033[1;33m"
+BRED="\033[1;31m"
+RESET="\033[0m"
 
-echo -e "${YELLOW}Pilih Theme yang ingin kamu install:${RESET}"
-echo ""
-echo "  1) ZaleeTheme"
-echo "  2) Nebula"
-echo "  3) ArixTheme"
-echo "  4) ReggedTheme"
-echo "  5) Enigma Premium"
-echo "  6) Uninstall Theme"
-echo ""
+info(){ echo -e "${BBLUE}[INFO]${RESET} $*"; }
+warn(){ echo -e "${BYELLOW}[WARN]${RESET} $*"; }
+err(){ echo -e "${BRED}[ERR]${RESET} $*"; }
+confirm(){ read -r -p "$* (y/N): " yn; [[ "$yn" =~ ^[Yy] ]]; }
 
-read -p "Masukkan pilihan (1-6): " pilihan
+trap 'rm -rf "$TMPDIR"' EXIT
+mkdir -p "$TMPDIR" "$BACKUPDIR"
 
-# URL FILE THEME
-ZALEE="https://github.com/user-attachments/files/23604719/ZaleeTheme.zip"
-NEBULA="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/Nebula-main.zip"
-ARIX="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/ArixTheme.zip"
-REGGED="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/Regged.Theme.Pterodactyl.FREE.-.v1.0.zip"
-ENIGMA="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/Enigma_Premium.zip"
+download(){
+    local url="$1"
+    local out="$2"
 
-PANEL="/var/www/pterodactyl"
-
-install_theme() {
-    THEME_URL=$1
-    THEME_NAME=$2
-
-    echo -e "${CYAN}Mengunduh $THEME_NAME ...${RESET}"
-    curl -L "$THEME_URL" -o theme.zip
-
-    echo -e "${CYAN}Mengekstrak theme...${RESET}"
-    unzip -o theme.zip -d "$PANEL/public/"
-
-    echo -e "${GREEN}Theme $THEME_NAME berhasil terpasang!${RESET}"
-    rm -f theme.zip
+    if command -v curl >/dev/null; then
+        curl -L --fail -o "$out" "$url"
+    else
+        wget -O "$out" "$url"
+    fi
 }
 
-uninstall_theme() {
-    echo -e "${CYAN}Menghapus theme...${RESET}"
-    rm -rf $PANEL/public/assets
-    mkdir $PANEL/public/assets
+backup_dir(){
+    local target="$1"
+    local ts=$(date +%Y%m%d-%H%M%S)
+    local out="$BACKUPDIR/backup_${ts}.zip"
 
-    echo -e "${GREEN}Theme berhasil dihapus dan dikembalikan ke default.${RESET}"
+    info "Membuat backup: $out"
+    (cd "$(dirname "$target")" && zip -r -q "$out" "$(basename "$target")")
 }
 
-case $pilihan in
-    1)
-        install_theme "$ZALEE" "ZaleeTheme"
-        ;;
-    2)
-        install_theme "$NEBULA" "Nebula Theme"
-        ;;
-    3)
-        install_theme "$ARIX" "ArixTheme"
-        ;;
-    4)
-        install_theme "$REGGED" "ReggedTheme"
-        ;;
-    5)
-        install_theme "$ENIGMA" "Enigma Premium"
-        ;;
-    6)
-        uninstall_theme
-        ;;
-    *)
-        echo -e "${RED}Pilihan tidak valid!${RESET}"
-        ;;
-esac
+# ------------------------------
+# INSTALL ZALEE THEME (ASSETS ONLY)
+# ------------------------------
+install_zalee(){
+    local panel="$1"
+    local zip="$TMPDIR/ZaleeTheme.zip"
 
-echo -e "${GREEN}Selesai.${RESET}"
+    info "Download ZaleeTheme..."
+    download "$ZALEE_URL" "$zip"
+
+    mkdir -p "$TMPDIR/zalee"
+    unzip -q "$zip" -d "$TMPDIR/zalee"
+
+    if [[ ! -d "$TMPDIR/zalee/public/assets" ]]; then
+        err "ZaleeTheme.zip tidak berisi public/assets!"
+        exit 1
+    fi
+
+    backup_dir "$panel/public/assets"
+
+    info "Menghapus assets lama..."
+    rm -rf "$panel/public/assets"
+
+    info "Memindahkan assets baru..."
+    cp -a "$TMPDIR/zalee/public/assets" "$panel/public/assets"
+
+    chown -R www-data:www-data "$panel/public/assets" 2>/dev/null || true
+
+    info "ZaleeTheme berhasil dipasang!"
+}
+
+# ------------------------------
+# INSTALL FULL THEME
+# ------------------------------
+install_full(){
+    local panel="$1"
+    local url="$2"
+    local name="$3"
+
+    local zip="$TMPDIR/${name}.zip"
+    download "$url" "$zip"
+
+    mkdir -p "$TMPDIR/$name"
+    unzip -q "$zip" -d "$TMPDIR/$name"
+
+    backup_dir "$panel"
+
+    info "Menyalin file ke panel..."
+    rsync -a "$TMPDIR/$name/" "$panel/"
+
+    chown -R www-data:www-data "$panel" 2>/dev/null || true
+    info "$name berhasil dipasang!"
+}
+
+# ------------------------------
+# UNINSTALL
+# ------------------------------
+uninstall_theme(){
+    echo
+    ls -1t "$BACKUPDIR"
+    echo
+
+    if ! confirm "Restore backup terbaru?"; then
+        warn "Uninstall dibatalkan."
+        return
+    fi
+
+    local latest=$(ls -1t "$BACKUPDIR"/*.zip | head -n1)
+    [[ -z "$latest" ]] && err "Tidak ada backup!" && exit 1
+
+    info "Merestore backup: $latest"
+    unzip -q "$latest" -d "$TMPDIR/restore"
+    rsync -a "$TMPDIR/restore/" "$panel"
+    info "Restore selesai!"
+}
+
+# ------------------------------
+# MENU
+# ------------------------------
+menu(){
+echo -e "
+===========================================
+      ${BBLUE}ZALEE THEME INSTALLER v2${RESET}
+===========================================
+
+[1] ZaleeTheme (ASSETS ONLY)
+[2] Nebula Theme (Full)
+[3] ArixTheme (Full)
+[4] ReggedTheme (Full)
+[5] Enigma Premium (Full)
+[6] Uninstall / Restore
+[0] Exit
+"
+}
+
+# ------------------------------
+# MAIN
+# ------------------------------
+main(){
+    read -r -p "Masukkan lokasi panel [/var/www/pterodactyl]: " panel
+    panel="${panel:-$PANEL_PATH_DEFAULT}"
+
+    if [[ ! -d "$panel" ]]; then
+        err "Folder panel tidak ditemukan!"
+        exit 1
+    fi
+
+    menu
+    read -r -p "Pilihan: " ch
+
+    case $ch in
+        1) install_zalee "$panel" ;;
+        2) install_full "$panel" "$NEBULA_URL" "Nebula" ;;
+        3) install_full "$panel" "$ARIX_URL" "ArixTheme" ;;
+        4) install_full "$panel" "$REGGED_URL" "ReggedTheme" ;;
+        5) install_full "$panel" "$ENIGMA_URL" "EnigmaPremium" ;;
+        6) uninstall_theme "$panel" ;;
+        0) exit ;;
+        *) err "Pilihan tidak valid!" ; exit 1 ;;
+    esac
+}
+
+main
