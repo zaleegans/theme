@@ -1,6 +1,54 @@
 #!/bin/bash
 set -e
 
+echo -e "\n\033[1;91m===============================\033[0m"
+echo -e "\033[1;91m   BRUTAL MODE (SAFE EDITION)  \033[0m"
+echo -e "\033[1;91m===============================\033[0m\n"
+
+echo "[ BRUTAL ] Memulai mode brutal aman... 🔥"
+
+# --------------------------
+# FIX LOCK
+# --------------------------
+rm -f /var/lib/apt/lists/lock || true
+rm -f /var/lib/dpkg/lock || true
+rm -f /var/lib/dpkg/lock-frontend || true
+rm -f /var/cache/apt/archives/lock || true
+dpkg --configure -a || true
+
+apt update -y --fix-missing
+apt upgrade -y || true
+
+# --------------------------
+# INSTALL TOOLS BASIC (AMAN)
+# --------------------------
+apt install -y git curl wget nano zip unzip jq htop neofetch ncdu tmux screen
+
+# --------------------------
+# WARNA TERMINAL
+# --------------------------
+export TERM=xterm-256color
+echo "export TERM=xterm-256color" >> ~/.bashrc
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+echo "export LANG=en_US.UTF-8" >> ~/.bashrc
+echo "export LC_ALL=en_US.UTF-8" >> ~/.bashrc
+
+# --------------------------
+# INSTALL ZSH AMAN
+# --------------------------
+apt install -y zsh fonts-powerline
+
+if [ ! -d "/root/.oh-my-zsh" ]; then
+  git clone https://github.com/ohmyzsh/ohmyzsh.git /root/.oh-my-zsh
+fi
+
+sed -i 's/ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/' ~/.zshrc || true
+
+echo "[ BRUTAL ] Selesai tanpa error 🔥"
+set -e
+
 echo -e "\n\033[1;91m==========================\033[0m"
 echo -e "\033[1;91m   BRUTAL INSTALL MODE    \033[0m"
 echo -e "\033[1;91m==========================\033[0m\n"
