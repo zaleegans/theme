@@ -1,32 +1,33 @@
 #!/bin/bash
 set -e
 
-echo -e "\n\033[1;91m===============================\033[0m"
-echo -e "\033[1;91m   BRUTAL MODE (SAFE EDITION)  \033[0m"
-echo -e "\033[1;91m===============================\033[0m\n"
+echo -e "\n\033[1;91m==========================\033[0m"
+echo -e "\033[1;91m   BRUTAL INSTALL MODE     \033[0m"
+echo -e "\033[1;91m==========================\033[0m\n"
 
-echo "[ BRUTAL ] Memulai mode brutal aman... 🔥"
+echo "[ BRUTAL ] Memulai mode brutal... semua hambatan akan dihancurkan 🔥"
 
-# --------------------------
-# FIX LOCK
-# --------------------------
+echo "[ BRUTAL ] Membersihkan kunci APT..."
 rm -f /var/lib/apt/lists/lock || true
 rm -f /var/lib/dpkg/lock || true
 rm -f /var/lib/dpkg/lock-frontend || true
 rm -f /var/cache/apt/archives/lock || true
 dpkg --configure -a || true
 
+echo "[ BRUTAL ] Update & upgrade sistem..."
 apt update -y --fix-missing
 apt upgrade -y || true
 
-# --------------------------
-# INSTALL TOOLS BASIC (AMAN)
-# --------------------------
-apt install -y git curl wget nano zip unzip jq htop neofetch ncdu tmux screen
+echo "[ BRUTAL ] Install semua fitur terminal (TANPA fastfetch)..."
+apt install -y \
+    git curl wget nano zip unzip jq htop tmux screen neofetch ncdu \
+    zsh fonts-powerline
 
-# --------------------------
-# WARNA TERMINAL
-# --------------------------
+# ======================================
+#      FIX: TIDAK ADA FASTFETCH SAMA SEKALI
+# ======================================
+
+echo "[ BRUTAL ] Set warna dan locale..."
 export TERM=xterm-256color
 echo "export TERM=xterm-256color" >> ~/.bashrc
 
@@ -35,18 +36,14 @@ export LC_ALL=en_US.UTF-8
 echo "export LANG=en_US.UTF-8" >> ~/.bashrc
 echo "export LC_ALL=en_US.UTF-8" >> ~/.bashrc
 
-# --------------------------
-# INSTALL ZSH AMAN
-# --------------------------
-apt install -y zsh fonts-powerline
-
+echo "[ BRUTAL ] Install Oh-My-Zsh..."
 if [ ! -d "/root/.oh-my-zsh" ]; then
-  git clone https://github.com/ohmyzsh/ohmyzsh.git /root/.oh-my-zsh
+    git clone https://github.com/ohmyzsh/ohmyzsh.git /root/.oh-my-zsh
 fi
 
 sed -i 's/ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/' ~/.zshrc || true
 
-echo "[ BRUTAL ] Selesai tanpa error 🔥"
+echo -e "\n\033[1;92m[ BRUTAL ] SELESAI TANPA ERROR 🔥🔥🔥\033[0m"
 set -e
 
 echo -e "\n\033[1;91m==========================\033[0m"
