@@ -44,81 +44,8 @@ fi
 sed -i 's/ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/' ~/.zshrc || true
 
 echo -e "\n\033[1;92m[ BRUTAL ] SELESAI TANPA ERROR 🔥🔥🔥\033[0m"
-set -e
 
-echo -e "\n\033[1;91m==========================\033[0m"
-echo -e "\033[1;91m   BRUTAL INSTALL MODE    \033[0m"
-echo -e "\033[1;91m==========================\033[0m\n"
-
-echo "[ BRUTAL ] Memulai mode brutal... semua hambatan akan dihancurkan 🔥"
-
-# ---------------------------------------------
-# 1. FIX LOCK APT YANG NGAMBEK
-# ---------------------------------------------
-echo "[ BRUTAL ] Membersihkan kunci APT..."
-rm -f /var/lib/apt/lists/lock || true
-rm -f /var/lib/dpkg/lock || true
-rm -f /var/lib/dpkg/lock-frontend || true
-rm -f /var/cache/apt/archives/lock || true
-
-dpkg --configure -a || true
-
-# ---------------------------------------------
-# 2. UPDATE & UPGRADE TANPA AMPUN
-# ---------------------------------------------
-echo "[ BRUTAL ] Update & upgrade sistem..."
-apt update -y --fix-missing
-apt upgrade -y || true
-
-# ---------------------------------------------
-# 3. INSTALL SELURUH KOMPONEN TERMINAL
-#    (FITUR 1–6 AUTO ENABLE)
-# ---------------------------------------------
-echo "[ BRUTAL ] Install semua fitur terminal..."
-
-apt install -y git curl wget nano zip unzip jq \
-  htop fastfetch neofetch ncdu tmux screen \
-  build-essential ca-certificates lsb-release software-properties-common
-
-# ---------------------------------------------
-# 4. TAMBAH MODERN SHELL + POWERLINE
-# ---------------------------------------------
-echo "[ BRUTAL ] Install ZSH + Powerlevel10k..."
-apt install -y zsh fonts-powerline
-
-if [ ! -d "/root/.oh-my-zsh" ]; then
-  git clone https://github.com/ohmyzsh/ohmyzsh.git /root/.oh-my-zsh
-fi
-
-echo "[ BRUTAL ] Mengaktifkan tema powerlevel10k..."
-git clone https://github.com/romkatv/powerlevel10k.git /root/.oh-my-zsh/custom/themes/powerlevel10k 2>/dev/null || true
-
-sed -i 's/ZSH_THEME=".*"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc || true
-
-# ---------------------------------------------
-# 5. ENABLE SEMUA WARNA, UTF-8, DAN ICON
-# ---------------------------------------------
-echo "[ BRUTAL ] Set locale dan warna terminal..."
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-echo "export TERM=xterm-256color" >> ~/.bashrc
-echo "export COLORTERM=truecolor" >> ~/.bashrc
-
-# ---------------------------------------------
-# 6. PERBAIKI PERMISSION BRUTAL
-# ---------------------------------------------
-echo "[ BRUTAL ] Fix permission..."
-chmod -R 755 /usr/local/bin || true
-chmod -R 755 /usr/bin || true
-
-# ---------------------------------------------
-# 7. CUSTOM BRUTAL MESSAGE
-# ---------------------------------------------
-echo "[ BRUTAL ] Terminal kamu sudah di-upgrade ke mode BARBAR 🔥"
-echo ""
-
-# =====================[ ZALEETHEME BRUTAL MODE ]===================== #
+==============[ ZALEETHEME BRUTAL MODE ]===================== #
 
 # Warna
 CYAN="\033[1;36m"
