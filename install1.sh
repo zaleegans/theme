@@ -71,11 +71,25 @@ loading_bar(){
 # ------------------------------
 banner(){
     clear
-    typewrite "${C}───────────────────────────────────────────────${RESET}"
-    typewrite "${G}     ★ ZALEE THEME INSTALLER — v3 ANIMATED ★  ${RESET}"
-    typewrite "${C}───────────────────────────────────────────────${RESET}"
+
+    local text="★ ZALEE THEME INSTALLER — v3 ANIMATED ★"
+    local bar="───────────────────────────────────────────────"
+
+    # RGB CYBERPUNK FADE
+    for i in {0..18}; do
+        r=$(( (i * 12) % 255 ))
+        g=$(( (80 + i * 9) % 255 ))
+        b=$(( (200 + i * 7) % 255 ))
+
+        clear
+        printf "\033[1m\033[38;2;%d;%d;%dm┌%s┐\033[0m\n" "$r" "$g" "$b" "$bar"
+        printf "\033[1m\033[38;2;%d;%d;%dm│  %s  │\033[0m\n" "$r" "$g" "$b" "$text"
+        printf "\033[1m\033[38;2;%d;%d;%dm└%s┘\033[0m\n" "$r" "$g" "$b" "$bar"
+
+        sleep 0.03
+    done
+
     echo
-    sleep 0.2
 }
 
 # ------------------------------
