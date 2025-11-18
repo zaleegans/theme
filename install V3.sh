@@ -57,7 +57,7 @@ NC="\033[0m"
 # Brutal Shock Intro
 printf "${MAGENTA}"
 echo "==============================================================="
-echo "===================  Z A L E E T H E M E  ====================="
+echo "===================  J E M B U T E R S S   ====================="
 echo "==================  U L T R A  B R U T A L  ==================="
 echo "==============================================================="
 printf "${NC}"
@@ -107,7 +107,7 @@ echo -e "\b ${GREEN}[READY]${NC}"
 # =================== END OF BRUTAL HEADER ======================= #
 
 # ============================================================
-#        ZALEE THEME INSTALLER — ULTRA PREMIUM EDITION
+#        TEMP ZAL INSTALLER — ULTRA PREMIUM EDITION
 # ============================================================
 
 THEME_URL="https://github.com/zaleegans/theme/releases/download/theme/ZaleeTheme.zip"
@@ -141,7 +141,7 @@ spinner() {
 # ---------- HEADER ----------
 clear
 echo -e "$C1───────────────────────────────────────────────"
-echo -e "  $C2★ ZALEE THEME INSTALLER — ULTRA PREMIUM ★"
+echo -e "  $C2★ ZALEE THEMP INSTALLER — ULTRA PREMIUM ★"
 echo -e "$C1───────────────────────────────────────────────$C0"
 echo ""
 
@@ -152,7 +152,7 @@ read -p "> " input_panel
 
 echo ""
 echo -e "$C1Pilih Theme:$C0"
-echo " [1] Install ZaleeTheme (ULTRA PREMIUM)"
+echo " [1] Install JEMBUT (ULTRA PREMIUM)"
 echo " [2] Uninstall / Restore"
 echo " [0] Exit"
 read -p "Pilihan: " P
