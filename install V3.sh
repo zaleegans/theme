@@ -45,8 +45,6 @@ sed -i 's/ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/' ~/.zshrc || true
 
 echo -e "\n\033[1;92m[ BRUTAL ] SELESAI TANPA ERROR 🔥🔥🔥\033[0m"
 
-==============[ ZALEETHEME BRUTAL MODE ]===================== #
-
 # Warna
 CYAN="\033[1;36m"
 GREEN="\033[1;32m"
