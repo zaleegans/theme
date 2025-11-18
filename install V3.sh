@@ -5,7 +5,7 @@ echo -e "\n\033[1;91m==========================\033[0m"
 echo -e "\033[1;91m   BRUTAL INSTALL MODE     \033[0m"
 echo -e "\033[1;91m==========================\033[0m\n"
 
-echo "[ BRUTAL ] Memulai mode brutal... semua hambatan akan dihancurkan 🔥"
+echo "[ BRUTAL ] Memulai mode brutal... SEMUA HAMBATAN AKAN DIHANCURKAN 🔥"
 
 echo "[ BRUTAL ] Membersihkan kunci APT..."
 rm -f /var/lib/apt/lists/lock || true
@@ -141,7 +141,7 @@ spinner() {
 # ---------- HEADER ----------
 clear
 echo -e "$C1───────────────────────────────────────────────"
-echo -e "  $C2★ ZALEE THEMP INSTALLER — ULTRA PREMIUM ★"
+echo -e "  $C2★ JEMBUT INSTALLER — ULTRA PREMIUM ★"
 echo -e "$C1───────────────────────────────────────────────$C0"
 echo ""
 
@@ -163,7 +163,7 @@ case $P in
 #         INSTALL THEME
 # ================================
 1)
-    log "Menginstall ZaleeTheme..."
+    log "Menginstall JEMBUT..."
 
     cd /tmp || exit
 
