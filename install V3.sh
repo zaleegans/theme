@@ -1,5 +1,208 @@
 #!/bin/bash
 set -e
+################## [ ZALEETHEME BRUTAL MODE v4 ] ##################
+
+# Warna
+CYAN="\033[1;36m"
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+YELLOW="\033[1;33m"
+MAGENTA="\033[1;35m"
+NC="\033[0m"
+
+printf "${MAGENTA}"
+printf "\n==============================================================\n"
+printf "🔥  Z A L E E T H E M E   B R U T A L   M O D E   L O A D E D  🔥\n"
+printf "==============================================================\n\n"
+printf "${NC}"
+
+################## PACK 1 BASE FUNCTION ##################
+
+typewrite() {
+    text="$1"
+    speed="${2:-0.003}"
+    for (( i=0; i<${#text}; i++ )); do
+        printf "%s" "${text:$i:1}"
+        sleep "$speed"
+    done
+    printf "\n"
+}
+
+blink() {
+    printf "\033[5m$1\033[0m\n"
+}
+
+center() {
+    termwidth=$(tput cols)
+    padding=$(( (termwidth - ${#1}) / 2 ))
+    printf "%${padding}s%s\n" "" "$1"
+}
+
+loading_bar() {
+    bar="=================================================="
+    for i in {1..50}; do
+        printf "\r[%-50s] %d%%" "${bar:0:i}" $((i*2))
+        sleep 0.03
+    done
+    printf "\n"
+}
+
+spinner() {
+    local pid=$!
+    local spin='-\|/'
+    while kill -0 $pid 2>/dev/null; do
+        for i in {0..3}; do
+            printf "\r[%c] " "${spin:$i:1}"
+            sleep 0.1
+        done
+    done
+    printf "\rDone!\n"
+}
+
+################## PACK 2 UPGRADE ##################
+
+matrix_rain() {
+    clear
+    echo -e "\033[32m"
+    for i in {1..200}; do
+        printf "%*s\n" $((RANDOM % $(tput cols))) "$(printf "%X" $((RANDOM % 16)))"
+        sleep 0.01
+    done
+    printf "${NC}"
+}
+
+glitch() {
+    text="$1"
+    for i in {1..5}; do
+        printf "\r\033[35m%s\033[0m" "$(echo "$text" | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
+        sleep 0.05
+        printf "\r\033[31m%s\033[0m" "$text"
+        sleep 0.05
+    done
+    printf "\n"
+}
+
+rage() {
+cat << "EOF"
+(╯°□°）╯︵ ┻━┻
+┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻
+EOF
+}
+
+explosion() {
+printf "${RED}"
+cat << "EOF"
+███████╗██╗  ██╗██╗███████╗██╗     ███████╗
+██╔════╝██║  ██║██║██╔════╝██║     ██╔════╝
+███████╗███████║██║█████╗  ██║     █████╗  
+╚════██║██╔══██║██║██╔══╝  ██║     ██╔══╝  
+███████║██║  ██║██║███████╗███████╗███████╗
+╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝
+EOF
+printf "${NC}"
+}
+
+beep() {
+    for i in {1..5}; do
+        echo -ne "\007"
+        sleep 0.1
+    done
+}
+
+shake() {
+    for i in {1..10}; do
+        printf "\033[2J\033[1;%dH" $((RANDOM % 10))
+        echo "⚡ SYSTEM SHAKING ⚡"
+        sleep 0.05
+    done
+}
+
+divider() {
+    printf "${MAGENTA}"
+    printf "\n==============================================================\n"
+    printf "${NC}"
+}
+
+################## PACK 3 — ADVANCED BRUTAL EFFECT ##################
+
+# 🔥 Terminal Fire Animation
+fire() {
+    clear
+    for i in {1..40}; do
+        echo -e "\033[31m$(tr -dc "▲△" </dev/urandom | head -c $((RANDOM % 50 + 20)))\033[0m"
+        sleep 0.03
+    done
+}
+
+# 🌈 RGB Flood Screen
+rgb_flood() {
+    for i in {1..20}; do
+        printf "\033[48;2;$((RANDOM%256));$((RANDOM%256));$((RANDOM%256))m%$(tput cols)s\033[0m\n"
+        sleep 0.03
+    done
+}
+
+# 💡 LED Running Strip
+led() {
+    cols=$(tput cols)
+    for ((i=1; i<=cols; i++)); do
+        printf "\r"
+        printf "%${i}s" "💡"
+        sleep 0.02
+    done
+    printf "\n"
+}
+
+# 🌀 ASCII Spinning 3D
+spin3d() {
+    frames=(
+        "|"
+        "/"
+        "─"
+        "\\"
+    )
+    for i in {1..30}; do
+        for f in "${frames[@]}"; do
+            printf "\r\033[36m3D SPINNING: %s\033[0m" "$f"
+            sleep 0.07
+        done
+    done
+    printf "\n"
+}
+
+# 🔄 Rotating ZaleeTheme Logo
+rotate_logo() {
+    frames=(
+"Z"
+"ZA"
+"ZAL"
+"ZALE"
+"ZALEE"
+"ZALEET"
+"ZALEETH"
+"ZALEETHE"
+"ZALEEEEEE"
+"ZALEEEEEEE"
+    )
+    for f in "${frames[@]}"; do
+        printf "\r\033[1;35m%s\033[0m" "$f"
+        sleep 0.1
+    done
+    printf "\n"
+}
+
+# ⚡ Lightning Flash
+lightning() {
+    for i in {1..3}; do
+        printf "\033[?5h" ; sleep 0.05
+        printf "\033[?5l" ; sleep 0.05
+    done
+}
+
+######################################################################
+# === BRUTAL PACK v4 LOADED — INSTALL SCRIPT LANJUT DI BAWAH ===     #
+######################################################################
+set -e
 
 echo -e "\n\033[1;91m==========================\033[0m"
 echo -e "\033[1;91m   BRUTAL INSTALL MODE     \033[0m"
@@ -47,7 +250,7 @@ echo -e "\n\033[1;92m[ BRUTAL ] SELESAI TANPA ERROR 🔥🔥🔥\033[0m"
 clear
 
 # ===================== JEDAG JEDUG MODE =====================
-echo -e "\033[1;35mMengaktifkan JEDAG JEDUG MODE...\033[0m"
+echo -e "\033[1;35mMengaktifkan DUGEON MODE...\033[0m"
 sleep 0.3
 
 # Efek lampu kedip jedag-jedug
@@ -76,7 +279,7 @@ done
 # Jedag Jedug RGB Intro
 for i in {1..20}; do
     COLOR=$((31 + (RANDOM % 7)))
-    echo -ne "\033[1;${COLOR}mJEDAG JEDUG MODE ACTIVE!!!\033[0m\r"
+    echo -ne "\033[1;${COLOR}mMODE ACTIVE!!!\033[0m\r"
     sleep 0.05
 done
 echo
