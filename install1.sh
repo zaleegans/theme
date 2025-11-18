@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-# ZALEE THEME INSTALLER – FINAL ANIMATED VERSION
-
+# ZALEE THEME INSTALLER — FINAL v3
 set -euo pipefail
 IFS=$'\n\t'
 
-# ------------------------------
+# --------------------------------
 # KONFIGURASI
-# ------------------------------
+# --------------------------------
 PANEL_PATH_DEFAULT="/var/www/pterodactyl"
 TMPDIR="/tmp/theme_installer_$$"
 BACKUPDIR="/root/theme_backups"
@@ -17,9 +16,11 @@ ARIX_URL="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/ArixT
 REGGED_URL="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/Regged.Theme.Pterodactyl.FREE.-.v1.0.zip"
 ENIGMA_URL="https://github.com/zaleegans/ZaleeTheme/releases/download/jembut/Enigma_Premium.zip"
 
-# ------------------------------
+mkdir -p "$TMPDIR" "$BACKUPDIR"
+
+# --------------------------------
 # WARNA
-# ------------------------------
+# --------------------------------
 C="\033[1;36m"
 B="\033[1;34m"
 Y="\033[1;33m"
@@ -27,16 +28,17 @@ R="\033[1;31m"
 G="\033[1;32m"
 RESET="\033[0m"
 
-info(){ echo -e "${B}[INFO]${RESET} $*"; }
-warn(){ echo -e "${Y}[WARN]${RESET} $*"; }
+# --------------------------------
+# LOG PRINT
+# --------------------------------
 err(){ echo -e "${R}[ERR]${RESET} $*"; }
+info(){ echo -e "${B}[INFO]${RESET} $*"; }
 
 trap 'rm -rf "$TMPDIR"' EXIT
-mkdir -p "$TMPDIR" "$BACKUPDIR"
 
-# ------------------------------
-# ANIMASI — TYPEWRITER
-# ------------------------------
+# --------------------------------
+# TYPEWRITER ANIMATION
+# --------------------------------
 typewrite(){
     local text="$1"
     for ((i=0; i<${#text}; i++)); do
@@ -46,37 +48,33 @@ typewrite(){
     echo
 }
 
-# ------------------------------
-# ANIMASI — LOADING BAR PREMIUM
-# ------------------------------
+# --------------------------------
+# LOADING BAR — NO BC
+# --------------------------------
 loading_bar(){
     local duration=${1:-3}
     local length=32
-    local sleep_time
-    sleep_time=$(echo "$duration / $length" | bc -l)
+    local sleep_time=$(awk "BEGIN {print $duration / $length}")
 
     echo
     for ((i=0; i<=length; i++)); do
         filled=$(printf "%${i}s" | tr ' ' '█')
         empty=$(printf "%$((length-i))s" | tr ' ' '░')
-
         printf "\r${C}[${filled}${empty}]${RESET} %3d%%" $(( i*100/length ))
         sleep "$sleep_time"
     done
     echo -e "\n"
 }
 
-# ------------------------------
-# ANIMASI — BANNER
-# ------------------------------
+# --------------------------------
+# BANNER ANIMASI RGB
+# --------------------------------
 banner(){
     clear
-
     local text="★ ZALEE THEME INSTALLER — v3 ANIMATED ★"
     local bar="───────────────────────────────────────────────"
 
-    # RGB CYBERPUNK FADE
-    for i in {0..18}; do
+    for i in {0..20}; do
         r=$(( (i * 12) % 255 ))
         g=$(( (80 + i * 9) % 255 ))
         b=$(( (200 + i * 7) % 255 ))
@@ -85,34 +83,35 @@ banner(){
         printf "\033[1m\033[38;2;%d;%d;%dm┌%s┐\033[0m\n" "$r" "$g" "$b" "$bar"
         printf "\033[1m\033[38;2;%d;%d;%dm│  %s  │\033[0m\n" "$r" "$g" "$b" "$text"
         printf "\033[1m\033[38;2;%d;%d;%dm└%s┘\033[0m\n" "$r" "$g" "$b" "$bar"
-
         sleep 0.03
     done
-
     echo
 }
 
-# ------------------------------
-# DOWNLOAD & BACKUP
-# ------------------------------
+# --------------------------------
+# DOWNLOAD — FIXED, ANTI 404
+# --------------------------------
 download(){
     local url="$1"
     local out="$2"
-    curl -sSL --fail -o "$out" "$url"
+    curl -L --fail -o "$out" "$url"
 }
 
+# --------------------------------
+# BACKUP
+# --------------------------------
 backup_dir(){
     local target="$1"
     local ts=$(date +%Y%m%d-%H%M%S)
     local out="$BACKUPDIR/backup_$ts.zip"
 
-    info "Backup: $out"
+    info "Membuat backup: $out"
     (cd "$(dirname "$target")" && zip -rq "$out" "$(basename "$target")")
 }
 
-# ------------------------------
+# --------------------------------
 # INSTALL ZALEE (ASSETS ONLY)
-# ------------------------------
+# --------------------------------
 install_zalee(){
     local panel="$1"
     local zip="$TMPDIR/ZaleeTheme.zip"
@@ -124,11 +123,12 @@ install_zalee(){
     unzip -q "$zip" -d "$TMPDIR/zalee"
 
     if [[ ! -d "$TMPDIR/zalee/public/assets" ]]; then
-        err "Zip tidak berisi public/assets"
+        err "Zip tidak berisi folder public/assets!"
         exit 1
     fi
 
     backup_dir "$panel/public/assets"
+
     rm -rf "$panel/public/assets"
     cp -a "$TMPDIR/zalee/public/assets" "$panel/public/assets"
 
@@ -137,9 +137,9 @@ install_zalee(){
     echo -e "${G}✓ ZaleeTheme berhasil dipasang!${RESET}"
 }
 
-# ------------------------------
+# --------------------------------
 # INSTALL FULL THEME
-# ------------------------------
+# --------------------------------
 install_full(){
     local panel="$1"
     local url="$2"
@@ -149,10 +149,12 @@ install_full(){
     loading_bar 3
 
     local zip="$TMPDIR/$name.zip"
+
     download "$url" "$zip"
     unzip -q "$zip" -d "$TMPDIR/$name"
 
     backup_dir "$panel"
+
     rsync -a "$TMPDIR/$name/" "$panel/"
 
     chown -R www-data:www-data "$panel" || true
@@ -160,9 +162,9 @@ install_full(){
     echo -e "${G}✓ $name berhasil dipasang!${RESET}"
 }
 
-# ------------------------------
+# --------------------------------
 # UNINSTALL / RESTORE
-# ------------------------------
+# --------------------------------
 uninstall_theme(){
     echo
     ls -1t "$BACKUPDIR"
@@ -181,9 +183,9 @@ uninstall_theme(){
     echo -e "${G}Restore selesai!${RESET}"
 }
 
-# ------------------------------
+# --------------------------------
 # MENU
-# ------------------------------
+# --------------------------------
 menu(){
     echo -e "${B}Pilih Theme:${RESET}"
     echo -e " ${C}[1]${RESET} ZaleeTheme (ASSETS)"
@@ -196,9 +198,9 @@ menu(){
     echo
 }
 
-# ------------------------------
+# --------------------------------
 # MAIN
-# ------------------------------
+# --------------------------------
 main(){
     banner
 
