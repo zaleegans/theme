@@ -1,458 +1,694 @@
-#!/bin/bash set -e ################## [ ZALEETHEME BRUTAL MODE v4 ] ##################
-
-Warna
-
-CYAN="\033[1;36m" GREEN="\033[1;32m" RED="\033[1;31m" YELLOW="\033[1;33m" MAGENTA="\033[1;35m" NC="\033[0m"
-
-printf "${MAGENTA}" printf "\n==============================================================\n" printf "🔥  Z A L E E T H E M E   B R U T A L   M O D E   L O A D E D  🔥\n" printf "==============================================================\n\n" printf "${NC}"
-
-################## PACK 4 — INSANE BRUTAL MODE ##################
-
-pulse() { for i in {1..8}; do printf "\033[48;2;255;0;0m%$(tput cols)s\033[0m\r" sleep 0.06 printf "\033[48;2;0;0;0m%$(tput cols)s\033[0m\r" sleep 0.06 done printf "\n" }
-
-turbulence() { for i in {1..20}; do printf "\033[%d;%dH⚡" $((RANDOM%20+1)) $((RANDOM%50+1)) sleep 0.03 done printf "\033[0m\n" }
-
-wave() { for i in {1..25}; do line=$(printf "%*s" $((RANDOM%$(tput cols))) | tr ' ' '~') echo -e "\033[35m$line\033[0m" sleep 0.02 done }
-
-nuke_flash() { for i in {1..4}; do printf "\033[?5h"; sleep 0.04 printf "\033[?5l"; sleep 0.04 done }
-
-screen_crack() { cat << "EOF" \  |  /       CRACK --  ███  --
-/  |  \
-EOF }
-
-rgb_slide() { width=$(tput cols) for i in {1..width}; do printf "\033[48;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m " sleep 0.005 done printf "\033[0m\n" }
-
-hellfire() { cat << "EOF" 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 🔥 H E L L F I R E   M O D E   O N 🔥 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 EOF }
-
-alarm() { for i in {1..8}; do echo -ne "\007"
-printf "\033[41m!!! ALERT !!!\033[0m\r" sleep 0.1 printf "\033[43m!!! ALERT !!!\033[0m\r" sleep 0.1 done printf "\n" }
 #!/bin/bash
+clear
 
-===============[ ZALEETHEME BRUTAL MODE — PART 2 ]====================
+###############################################
+#       T E R M I N A L   B R U T A L   V10
+###############################################
 
-Fitur tambahan lanjutan — AMAN, TANPA ERROR, SIAP TEMPEL
+RED="\033[1;31m"; GRN="\033[1;32m"; YLW="\033[1;33m"
+BLU="\033[1;34m"; MAG="\033[1;35m"; CYN="\033[1;36m"; NC="\033[0m"
 
-Langsung lanjutkan setelah PART 1
+echo -e "${MAG}"
+echo "=============================================================="
+echo "🔥  T E R M I N A L   B R U T A L   M O D E   V1O   🔥"
+echo "=============================================================="
+echo -e "${NC}"
+sleep 0.3
 
-=====================================================================
 
-Warna
-
-CYAN="\033[1;36m" GREEN="\033[1;32m" RED="\033[1;31m" YELLOW="\033[1;33m" MAGENTA="\033[1;35m" NC="\033[0m"
-
-printf "${CYAN}▶ BRUTAL MODE PART 2 LOADED${NC}\n"
-
-==========================
-
-Fitur 1: Anti Freeze Terminal
-
-==========================
-
-trap '' SIGTSTP SIGINT SIGQUIT printf "${GREEN}[✔] Terminal Anti-Freeze aktif${NC}\n"
-
-==========================
-
-Fitur 2: Auto Force Clear Cache Sistem
-
-==========================
-
-printf "${YELLOW}[~] Membersihkan cache memori...${NC}\n" sync; echo 3 > /proc/sys/vm/drop_caches 2>/dev/null printf "${GREEN}[✔] Cache dibersihkan${NC}\n"
-
-==========================
-
-Fitur 3: Log Brutal Mode
-
-==========================
-
-LOGFILE="/root/zaleetheme_brutal.log" echo "$(date) : Brutal mode part 2 executed" >> $LOGFILE printf "${GREEN}[✔] Log tercatat di $LOGFILE${NC}\n"
-
-==========================
-
-Fitur 4: Auto Fix Permission Pterodactyl
-
-==========================
-
-printf "${YELLOW}[~] Memperbaiki permission panel...${NC}\n" chown -R www-data:www-data /var/www/pterodactyl 2>/dev/null chmod -R 755 /var/www/pterodactyl 2>/dev/null printf "${GREEN}[✔] Permission OK${NC}\n"
-
-==========================
-
-Fitur 5: Anti Error Jalur Folder
-
-==========================
-
-mkdir -p /var/www/pterodactyl/public/assets >/dev/null 2>&1 printf "${GREEN}[✔] Folder assets aman${NC}\n"
-
-printf "${MAGENTA}▶ PART 2 SELESAI — SIAP LANJUT PART 3${NC}\n"
-########################## [ PART 3 — TOTAL BRUTAL DESTRUCTION PACK ] ##########################
-
-# 💢 Earthquake Ultra (guncangan brutal level 10)
-mega_quake() {
-    for i in {1..40}; do
-        printf "\033[2J\033[1;1H"
-        printf "\033[3%dm" $((RANDOM % 7))
-        offset=$((RANDOM % 20))
-        printf "%${offset}s🔥 ZALEE SHAKE 🔥\n"
-        sleep 0.03
-    done
-    printf "\033[0m"
-}
-
-# 🩸 Bloody Text Rain (hujan darah ASCII)
-blood_rain() {
-    cols=$(tput cols)
-    for i in {1..25}; do
-        col=$((RANDOM % cols))
-        printf "\033[1;31m%${col}s▌\033[0m\n"
-        sleep 0.02
-    done
-}
-
-# 🚀 Hyper Launch Blast (roket launching brutal)
-hyper_launch() {
-    for i in {1..15}; do
-        printf "\033[2J\033[1;1H"
-cat << "EOF"
-        ▲
-       ▲ ▲
-      ▲   ▲
-     ▲     ▲    ROCKET LIFT-OFF
-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-EOF
-        sleep 0.05
-    done
-}
-
-# ⚡ CHAOS SPARKS (kilatan random brutal)
-chaos_sparks() {
-    for i in {1..50}; do
-        printf "\033[%d;%dH\033[1;33m⚡\033[0m" $((RANDOM%20+1)) $((RANDOM%60+1))
-        sleep 0.01
-    done
-    printf "\033[0m\n"
-}
-
-# 🕳️ Terminal Collapse (terminal runtuh brutal)
-collapse() {
-    height=$(tput lines)
-    for ((i=height; i>0; i--)); do
-        printf "\033[2J\033[${i};1H\033[1;31m██████████████████████████████\033[0m"
-        sleep 0.03
-    done
-}
-
-# 🔥 Inferno Wall (tembok api brutal)
-inferno() {
-    for i in {1..10}; do
-cat << "EOF"
-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-EOF
-        sleep 0.07
-    done
-}
-
-# 🧨 Detonation Shockwave (gelombang ledakan)
-shockwave() {
-    for r in {1..20}; do
-        printf "\033[2J"
-        for ((i=0; i<r; i++)); do
-            printf "%${r}s\033[35m*\033[0m\n"
-        done
-        sleep 0.02
-    done
-}
-
-# 💀 DEMONIC BANNER (banner iblis brutal)
-demonic_banner() {
-cat << "EOF"
-██████╗ ███████╗███╗   ███╗ ██████╗ ███╗   ██╗██╗ ██████╗
-██╔══██╗██╔════╝████╗ ████║██╔═══██╗████╗  ██║██║██╔════╝
-██████╔╝█████╗  ██╔████╔██║██║   ██║██╔██╗ ██║██║██║  ███╗
-██╔══██╗██╔══╝  ██║╚██╔╝██║██║   ██║██║╚██╗██║██║██║   ██║
-██║  ██║███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║██║╚██████╔╝
-╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝ ╚═════╝
-EOF
-}
-
-###################################################################################
-# === END OF PART 3 BRUTAL PACK — SIAP DI COMBINE DENGAN SEKUENS LAIN 🔥💀 ========
-###################################################################################
-########################## [ PART 4 — GODMODE BRUTAL PACK ] ##########################
-
-# 💠 Quantum Shift (layar geser secara acak)
-quantum_shift() {
-    for i in {1..30}; do
-        off=$((RANDOM % 20))
-        printf "\033[2J\033[${off}C\033[${off}B"
-        printf "\033[3%dm  Q U A N T U M  S H I F T  \033[0m\n" $((RANDOM % 7))
-        sleep 0.03
-    done
-}
-
-# 🔱 Divine Lightning (petir dewa turun ke terminal)
-divine_lightning() {
-    for i in {1..20}; do
+##########################################################
+# PACK 1 — MATRIX RAIN
+##########################################################
+matrix_rain() {
+    chars="@#$%&*01"
+    for i in {1..100}; do
         col=$((RANDOM % $(tput cols)))
-        printf "\033[1;37m%${col}s⚡⚡⚡\033[0m\n"
+        char=${chars:$((RANDOM % ${#chars})):1}
+        echo -ne "\033[38;5;$((RANDOM%46+46))m\033[${i};${col}H$char"
+        sleep 0.004
+    done
+    echo -e "\033[0m"
+}
+
+##########################################################
+# PACK 2 — RGB WIPE
+##########################################################
+rgb_wipe() {
+    for i in {1..200}; do
+        printf "\033[48;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m%*s\033[0m\n" "$(tput cols)" ""
+        sleep 0.003
+    done
+}
+
+##########################################################
+# PACK 3 — GLITCH TEXT
+##########################################################
+glitch() {
+    txt="$1"
+    for i in {1..20}; do
+        echo -e "\033[38;5;$((RANDOM%200))m${txt}\033[0m"
         sleep 0.03
     done
+    echo -e "${MAG}${txt}${NC}"
 }
 
-# 🌀 Black Hole Warp (layar tersedot ke dalam lubang hitam)
-blackhole() {
-    cols=$(tput cols)
-    for i in $(seq $cols -1 1); do
-        printf "\033[2J"
-        printf "%${i}s●\n"
-        sleep 0.01
-    done
-}
-
-# 🔥 Phoenix Rebirth (terminal terbakar lalu hidup kembali)
-phoenix() {
-    for i in {1..10}; do
-cat << "EOF"
-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-      P H O E N I X   R E B I R T H
-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-EOF
-        sleep 0.07
-    done
-}
-
-# ⚔️ God Slash (tebasan energi memotong layar)
-god_slash() {
-    for i in {1..15}; do
-        printf "\033[2J"
-cat << "EOF"
-               ⚔️
-                \\
-                 \\
-                  \\\\    *SLASH*
-                   \\\\
-                    \\\\
-EOF
-        sleep 0.03
-    done
-}
-
-# 🎭 Mirage Echo (bayangan terminal menari)
-mirage() {
-    for i in {1..10}; do
-        printf "\033[2J"
-        printf "\033[3%dm=== MIRAGE ECHO ===\033[0m\n" $((RANDOM % 7))
-        sleep 0.05
-    done
-}
-
-# 🌌 Cosmic Starfall (jatuhan bintang acak di layar)
-starfall() {
+##########################################################
+# PACK 4 — SCREEN SHAKE
+##########################################################
+shake() {
     for i in {1..40}; do
-        printf "\033[%d;%dH\033[1;36m*\033[0m" $((RANDOM%20+1)) $((RANDOM%60+1))
+        printf "\033[2J\033[$((RANDOM%10));$((RANDOM%20))H⚠ BRUTAL ⚠"
+        sleep 0.015
+    done
+    clear
+}
+
+##########################################################
+# PACK 5 — FLASHBANG
+##########################################################
+flashbang() {
+    for i in {1..12}; do
+        printf "\033[?5h"; sleep 0.03
+        printf "\033[?5l"; sleep 0.03
+    done
+}
+
+##########################################################
+# PACK 6 — FIRE
+##########################################################
+fire() {
+cat << "EOF"
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥        F I R E   M O D E   O N           🔥
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+EOF
+}
+
+##########################################################
+# PACK 7 — ELECTRIC BOLTS
+##########################################################
+lightning() {
+    for i in {1..40}; do
+        echo -e "\033[38;5;226m⚡\033[0m"
+        sleep 0.015
+    done
+}
+
+##########################################################
+# PACK 8 — PULSE RED SCREEN
+##########################################################
+pulse() {
+    for i in {1..20}; do
+        printf "\033[48;2;255;0;0m%*s\033[0m\r" "$(tput cols)" ""
+        sleep 0.025
+        printf "\033[48;2;30;0;0m%*s\033[0m\r" "$(tput cols)" ""
+        sleep 0.025
+    done
+}
+
+##########################################################
+# PACK 9 — TURBULENCE
+##########################################################
+turbulence() {
+    for i in {1..70}; do
+        printf "\033[$((RANDOM%30+1));$((RANDOM%80+1))H⚡"
         sleep 0.01
     done
     printf "\033[0m\n"
 }
 
-# 🧿 God Eye Activation (mata dewa muncul)
-god_eye() {
-cat << "EOF"
-           ███████████████████
-           █   👁   G O D   👁   █
-           ███████████████████
-EOF
-}
-
-# 🔥 Ultimate Hellstorm (badai api terminal)
-hellstorm() {
-    for i in {1..12}; do
-        printf "\033[2J"
-cat << "EOF"
-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-            H E L L S T O R M
-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-EOF
-        sleep 0.06
-    done
-}
-
-###################################################################################
-# === END OF GODMODE PACK — SEMUA EFEK SIAP KAMU COMBINE 💀🔥⚡ ===================
-###################################################################################
-########################## [ PART 5 — APOCALYPSE FINAL BOSS PACK ] ##########################
-
-# 🌋 VOLCANIC ERUPTION — layar meledak warna magma
-volcano() {
-    for i in {1..25}; do
-        printf "\033[48;2;255;$((RANDOM%100));0m%$(tput cols)s\033[0m\n"
-        sleep 0.02
-    done
-}
-
-# 🌪 APOCALYPSE STORM — badai ASCII ngacak terminal
-apocalypse_storm() {
-    for i in {1..40}; do
-        printf "\033[%d;%dH\033[1;31m#\033[0m" $((RANDOM%25+1)) $((RANDOM%70+1))
-        printf "\033[%d;%dH\033[1;33m@\033[0m" $((RANDOM%25+1)) $((RANDOM%70+1))
-        printf "\033[%d;%dH\033[1;37m*\033[0m" $((RANDOM%25+1)) $((RANDOM%70+1))
-        sleep 0.02
-    done
-}
-
-# 💀 DOOM TEXT — tulisan getar + glitch + gila
-doom_text() {
-    text=" A P O C A L Y P S E   I N I T I A T E D "
-    for i in {1..12}; do
-        offset=$((RANDOM%4))
-        printf "\033[%dC\033[31m%s\033[0m\r" "$offset" "$text"
-        sleep 0.05
-    done
-    printf "\n"
-}
-
-# 🌘 DARK VOID — layar hitam total dengan titik misterius
-dark_void() {
-    printf "\033[40m"
-    printf "\033[2J"
-    for i in {1..8}; do
-        printf "\033[%d;%dH\033[1;35m●\033[0m" $((RANDOM%25+1)) $((RANDOM%70+1))
+##########################################################
+# PACK 10 — ALARM
+##########################################################
+alarm() {
+    for i in {1..10}; do
+        echo -ne "\007"
         sleep 0.08
     done
 }
 
-# ⚡ RAGNAROK — flash putih brutal
-ragnarok_flash() {
-    for i in {1..6}; do
-        printf "\033[47m\033[2J"
-        sleep 0.03
-        printf "\033[40m\033[2J"
-        sleep 0.03
-    done
-}
-
-# 🔥 FINAL BOSS — ASCII Boss muncul
-final_boss() {
-cat << "EOF"
-███████╗██╗███╗   ██╗ █████╗ ██╗     
-██╔════╝██║████╗  ██║██╔══██╗██║     
-█████╗  ██║██╔██╗ ██║███████║██║     
-██╔══╝  ██║██║╚██╗██║██╔══██║██║     
-██║     ██║██║ ╚████║██║  ██║███████╗
-╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝
-EOF
-}
-
-# 🩸 BLOOD RAIN — hujan darah turun dari atas
+##########################################################
+# PACK 11 — BLOOD RAIN
+##########################################################
 blood_rain() {
-    cols=$(tput cols)
-    for i in {1..30}; do
-        pos=$((RANDOM%cols))
-        printf "\033[31m%${pos}s|\033[0m\n"
+    for i in {1..60}; do
+        printf "\033[$((RANDOM%30+1));$((RANDOM%80+1))H\033[38;5;160m█\033[0m"
         sleep 0.01
     done
 }
 
-# 🧨 CHAOS BREAK — glitch layar ancur acak
-chaos_break() {
-    for i in {1..20}; do
-        printf "\033[1;3%dm%$(tput cols)s\033[0m\n" $((RANDOM%8))
-        sleep 0.01
-    done
-}
-
-# 🌑 BLACKOUT — terminal mati 1 detik
-blackout() {
-    printf "\033[40m\033[2J"
-    sleep 1
-    printf "\033[0m"
-}
-
-# 🔥🔥 FINAL APOCALYPSE SEQUENCE 🔥🔥
-apocalypse_sequence() {
-    volcano
-    doom_text
-    blood_rain
-    chaos_break
-    dark_void
-    ragnarok_flash
-    final_boss
-    apocalypse_storm
-    blackout
-}
-
-####################################################################################
-# === END PART 5 — APOCALYPSE FINAL BOSS PACK COMPLETE 💀🔥🌋⚡ =====================
-####################################################################################
-################## PACK 6 — APOCALYPSE MODE ##################
-
-# ⚡ SCREEN MELT (layar meleleh kayak lava)
+##########################################################
+# PACK 12 — TERMINAL MELT
+##########################################################
 melt() {
-    for i in {1..15}; do
-        col=$(tput cols)
-        printf "\033[38;2;$((RANDOM%255));50;50m"
-        printf "%*s\n" $col | tr ' ' '#'
-        sleep 0.03
-    done
-    printf "\033[0m"
-}
-
-# 🌪 TERMINAL SHAKE EXTREME (goyang level gempa bumi)
-quake() {
-    for i in {1..20}; do
-        printf "\033[2J"
-        printf "\033[%d;%dH💀" $((RANDOM%20+1)) $((RANDOM%50+1))
+    cols=$(tput cols)
+    for i in {1..40}; do
+        printf "%$((RANDOM % cols))s████████\n"
         sleep 0.02
     done
-    printf "\033[0m"
 }
 
-# 🔥 ASCII FIRESTORM (badai api)
-firestorm() {
+##########################################################
+# PACK 13 — CRT DISTORTION
+##########################################################
+crt() {
     for i in {1..25}; do
-        echo -e "\033[31m🔥🔥🔥   🔥🔥🔥\033[0m"
+        printf "\033[38;5;$((RANDOM%255))m~ ~ ~ ~ ~ ~\033[0m\n"
+        sleep 0.01
+    done
+}
+
+##########################################################
+# PACK 14 — SMOKE MODE
+##########################################################
+smoke() {
+    for i in {1..50}; do
+        printf "\033[38;5;240m▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒\033[0m\n"
+        sleep 0.01
+    done
+}
+
+##########################################################
+# PACK 15 — SONIC BOOM WAVE
+##########################################################
+boom() {
+    for i in {1..30}; do
+        echo -e "\033[38;5;$((RANDOM%255))m((( BOOM )))\033[0m"
         sleep 0.03
     done
 }
 
-# ⚡ STATIC NOISE (efek TV rusak)
-static_noise() {
-    for i in {1..40}; do
-        line=$(head -c 60 /dev/urandom | tr -dc '░▒▓█')
-        echo -e "\033[37m$line\033[0m"
-        sleep 0.01
-    done
-}
-
-# 💥 TERMINAL DISINTEGRATE (hancur pelan-pelan)
-disintegrate() {
-    cols=$(tput cols)
-    for i in $(seq $cols -1 1); do
-        printf "\033[1;31m%*s\r" $i "■■■■■■■■■■■■■■■■"
-        sleep 0.01
-    done
-    printf "\033[0m\n"
-}
-
-# 💀 DEMON BANNER
-demon_banner() {
+##########################################################
+# PACK 16 — DOOM INTRO
+##########################################################
+doom() {
 cat << "EOF"
-███████╗██████╗ ██╗███████╗███╗   ███╗
-██╔════╝██╔══██╗██║██╔════╝████╗ ████║
-█████╗  ██████╔╝██║█████╗  ██╔████╔██║
-██╔══╝  ██╔══██╗██║██╔══╝  ██║╚██╔╝██║
-███████╗██║  ██║██║███████╗██║ ╚═╝ ██║
-╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚═╝     ╚═╝
+██████╗  ██████╗  ██████╗ ███╗   ███╗
+██╔══██╗██╔═══██╗██╔═══██╗████╗ ████║
+██████╔╝██║   ██║██║   ██║██╔████╔██║
+██╔══██╗██║   ██║██║   ██║██║╚██╔╝██║
+██║  ██║╚██████╔╝╚██████╔╝██║ ╚═╝ ██║
+╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝
 EOF
 }
 
-# 🚨 APOCALYPSE WARNING BLINK
-apocalypse_alert() {
-    for i in {1..6}; do
-        printf "\033[41m APOCALYPSE MODE ACTIVE \033[0m\r"
+##########################################################
+# PACK 17 — RED SCREEN OF DEATH
+##########################################################
+rsod() {
+    printf "\033[41m"
+    for i in {1..10}; do
+        echo "FATAL ERROR: BRUTAL MODE"
         sleep 0.1
-        printf "\033[45m APOCALYPSE MODE ACTIVE \033[0m\r"
-        sleep 0.1
+    done
+    printf "\033[0m"
+}
+
+##########################################################
+# PACK 18 — THUNDER ROLL
+##########################################################
+thunder() {
+    for i in {1..20}; do
+        echo -e "\033[1;37m💥 RUMBLE 💥\033[0m"
+        sleep 0.04
+    done
+}
+
+##########################################################
+# PACK 19 — ULTRA GLITCH
+##########################################################
+ultra_glitch() {
+    for i in {1..40}; do
+        printf "\033[38;5;$((RANDOM%255))mG L I T C H\033[0m\r"
+        sleep 0.02
+    done
+}
+
+##########################################################
+# PACK 20 — CHAOS MODE
+##########################################################
+chaos() {
+    for i in {1..150}; do
+        printf "\033[$((RANDOM%20+1));$((RANDOM%60+1))H\033[38;5;$((RANDOM%255))m@\033[0m"
+        sleep 0.005
+    done
+}
+
+##########################################################
+# FULL BRUTAL MODE SEQUENCE
+##########################################################
+
+clear
+matrix_rain
+pulse
+rgb_wipe
+glitch "SYSTEM OVERRIDE"
+fire
+shake
+blood_rain
+melt
+flashbang
+crt
+smoke
+boom
+turbulence
+lightning
+thunder
+doom
+rsod
+ultra_glitch
+chaos
+alarm
+##########################################################
+# PACK 21 — NEON EXPLOSION
+##########################################################
+neon_explosion() {
+    for i in {1..80}; do
+        printf "\033[38;5;$((RANDOM%255))m✹\033[0m"
+        sleep 0.01
+    done
+    echo
+}
+
+##########################################################
+# PACK 22 — DATA CORRUPTION SPAM
+##########################################################
+corrupt() {
+    for i in {1..40}; do
+        echo -e "\033[38;5;$((RANDOM%200))m██ DATA_CORRUPT ██\033[0m"
+        sleep 0.02
+    done
+}
+
+##########################################################
+# PACK 23 — TERMINAL BREAK SIMULATION
+##########################################################
+break_sim() {
+    echo -e "\033[31m[!] SYSTEM FAILURE DETECTED...\033[0m"
+    sleep 0.5
+    for i in {1..50}; do
+        printf "\033[38;5;$((RANDOM%200))m#\033[0m"
+        sleep 0.01
+    done
+    echo
+}
+
+##########################################################
+# PACK 24 — VIRUS SCAN SPOOF
+##########################################################
+virus_scan() {
+    for i in {1..20}; do
+        echo -e "\033[32m[SCAN]\033[0m Checking sector $((RANDOM%9999))..."
+        sleep 0.05
+    done
+    echo -e "\033[31m[ALERT] UNKNOWN SIGNATURE DETECTED\033[0m"
+    sleep 0.5
+}
+
+##########################################################
+# PACK 25 — STATIC NOISE
+##########################################################
+static_noise() {
+    for i in {1..60}; do
+        printf "\033[38;5;$((RANDOM%255))m░░▒▒▓▓██\033[0m"
+        sleep 0.01
+    done
+    echo
+}
+
+##########################################################
+# PACK 26 — DIMENSION SHIFT
+##########################################################
+dimension_shift() {
+    for i in {1..10}; do
+        printf "\033[2J\033[$((RANDOM%10+1));$((RANDOM%40+1))H>> SHIFT <<"
+        sleep 0.07
+    done
+    clear
+}
+
+##########################################################
+# PACK 27 — OVERLOAD WARNING
+##########################################################
+overload() {
+    for i in {1..15}; do
+        echo -e "\033[33m!! SYSTEM OVERLOAD: LEVEL $((RANDOM%100)).$((RANDOM%99))%\033[0m"
+        sleep 0.05
+    done
+}
+
+##########################################################
+# PACK 28 — BLUE STATIC SCREEN
+##########################################################
+blue_static() {
+    printf "\033[44m"
+    for i in {1..20}; do
+        printf "%*s\n" "$(tput cols)" ""
+        sleep 0.01
+    done
+    printf "\033[0m"
+}
+
+##########################################################
+# PACK 29 — CORE MELTDOWN
+##########################################################
+meltdown() {
+    for i in {1..25}; do
+        echo -e "\033[31mCORE TEMP: $((RANDOM%500+500))°C — MELTING\033[0m"
+        sleep 0.03
+    done
+}
+
+##########################################################
+# PACK 30 — FINAL PHASE: APOCALYPSE
+##########################################################
+apocalypse() {
+    for i in {1..70}; do
+        printf "\033[$((RANDOM%25+1));$((RANDOM%70+1))H\033[38;5;$((RANDOM%255))m✖\033[0m"
+        sleep 0.004
+    done
+    echo -e "\033[31mAPOCALYPSE MODE COMPLETE.\033[0m"
+}
+
+##########################################################
+# EXTENDED SEQUENCE EXECUTION
+##########################################################
+
+neon_explosion
+corrupt
+break_sim
+virus_scan
+static_noise
+dimension_shift
+overload
+blue_static
+meltdown
+apocalypse
+
+##########################################################
+#  EXTENSION: PACK 31..60 — BIG BRUTAL BLOCK (PASTE HERE)
+##########################################################
+
+# PACK 31 — LASER GRID
+laser_grid() {
+    cols=$(tput cols)
+    rows=$(tput lines)
+    for r in $(seq 1 $((rows/2))); do
+        line=""
+        for c in $(seq 1 $cols); do
+            if (( RANDOM % 6 == 0 )); then
+                line="${line}\033[1;91m|\033[0m"
+            else
+                line="${line} "
+            fi
+        done
+        printf "%s\n" "$line"
+        sleep 0.01
+    done
+}
+
+# PACK 32 — PIXEL SHOCK
+pixel_shock() {
+    for i in {1..120}; do
+        printf "\033[48;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m \033[0m"
+        if (( i % $(tput cols) == 0 )); then
+            printf "\n"
+        fi
+        sleep 0.002
+    done
+    echo
+}
+
+# PACK 33 — GLITCH BANNER
+glitch_banner() {
+    banner="== Z A L E E T H E M E : GLITCH BANNER =="
+    for i in {1..40}; do
+        echo -e "\033[38;5;$((RANDOM%200))m${banner}\033[0m"
+        sleep 0.03
+    done
+}
+
+# PACK 34 — CHROMA SWIRL
+chroma_swirl() {
+    for i in {1..60}; do
+        printf "\033[48;2;$((i*3%255));$((i*7%255));$((i*11%255))m%$(tput cols)s\033[0m\r" ""
+        sleep 0.02
+    done
+    echo
+}
+
+# PACK 35 — ERROR SPAM
+error_spam() {
+    for i in {1..50}; do
+        echo -e "\033[31m[ERROR] 0x$((RANDOM%99999)) - segmentation fault\033[0m"
+        sleep 0.02
+    done
+}
+
+# PACK 36 — BUZZER
+buzzer() {
+    for i in {1..8}; do
+        echo -ne "\007"
+        sleep 0.06
+    done
+}
+
+# PACK 37 — STEP GRID
+step_grid() {
+    cols=$(tput cols)
+    for r in {1..20}; do
+        for c in $(seq 1 $cols); do
+            if (( (r+c) % 7 == 0 )); then
+                printf "\033[38;5;$((RANDOM%255))m#\033[0m"
+            else
+                printf " "
+            fi
+        done
+        printf "\n"
+        sleep 0.03
+    done
+}
+
+# PACK 38 — SCROLLING HEX
+scroll_hex() {
+    for i in {1..60}; do
+        printf "%s " "$(printf '%x' $((RANDOM%65535)))"
+        if (( i % 8 == 0 )); then printf "\n"; fi
+        sleep 0.01
+    done
+    echo
+}
+
+# PACK 39 — MIRROR FLICKER
+mirror_flicker() {
+    for i in {1..30}; do
+        printf "\033[7m"
+        echo "======== MIRROR FLICKER ========"
+        printf "\033[0m"
+        sleep 0.05
+        clear
+    done
+}
+
+# PACK 40 — HAZE
+haze() {
+    for i in {1..40}; do
+        printf "\033[38;5;246m▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒\033[0m\n"
+        sleep 0.02
+    done
+}
+
+# PACK 41 — SPARKS
+sparks() {
+    for i in {1..100}; do
+        printf "\033[38;5;$((RANDOM%196+16))m*\033[0m"
+        (( i % $(tput cols) == 0 )) && printf "\n"
+        sleep 0.005
+    done
+    echo
+}
+
+# PACK 42 — GLASS CRACK
+glass_crack() {
+    cat <<'EOF'
+  ╔═╦═╦═╦═╦═╦═╦═╦═╗
+  ║ \ \  /  /  / / ║
+  ║  \ \/__/\/__/  ║
+  ╚════════════════╝
+EOF
+}
+
+# PACK 43 — FLASH STRIPES
+flash_stripes() {
+    for i in {1..40}; do
+        printf "\033[48;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m%*s\033[0m\n" "$(tput cols)" ""
+        sleep 0.01
+    done
+}
+
+# PACK 44 — SINE WAVE
+sine_wave() {
+    cols=$(tput cols)
+    for t in $(seq 0 0.2 12); do
+        line=""
+        for x in $(seq 1 $cols); do
+            y=$(awk -v t="$t" -v x="$x" 'BEGIN{printf("%d", 10+8*sin(t + x/6))}')
+            if (( y % 2 == 0 )); then line="${line}~"; else line="${line} "; fi
+        done
+        echo "$line"
+        sleep 0.03
+    done
+}
+
+# PACK 45 — RANDOM MESH
+random_mesh() {
+    for i in {1..80}; do
+        printf "\033[38;5;$((RANDOM%255))m█\033[0m"
+        (( i % $(tput cols) == 0 )) && printf "\n"
+        sleep 0.003
+    done
+    echo
+}
+
+# PACK 46 — DATA STROBE
+data_strobe() {
+    for i in {1..40}; do
+        echo -ne "\033[1;37m[DATA] $(date +%s%N | cut -c1-6)\r\033[0m"
+        sleep 0.05
+    done
+    echo
+}
+
+# PACK 47 — PULSE DOTS
+pulse_dots() {
+    for j in {1..20}; do
+        for i in {1..50}; do
+            printf "\033[38;5;$((RANDOM%255))m.\033[0m"
+        done
+        echo
+        sleep 0.04
+    done
+}
+
+# PACK 48 — SCREAM LINE
+scream_line() {
+    for i in {1..20}; do
+        echo -e "\033[1;31mSCREEEAM!!!\033[0m"
+        sleep 0.03
+    done
+}
+
+# PACK 49 — LAVA FLOW
+lava_flow() {
+    for i in {1..40}; do
+        printf "\033[48;2;$((200+RANDOM%55));$((RANDOM%60));0m%*s\033[0m\n" "$(tput cols)" ""
+        sleep 0.02
+    done
+}
+
+# PACK 50 — SKY METEORS
+sky_meteors() {
+    for i in {1..80}; do
+        printf "\033[$((RANDOM%20+1));$((RANDOM%60+1))H\033[1;37m*\033[0m"
+        sleep 0.01
     done
     printf "\n"
 }
 
-##############################################################
+# PACK 51 — GLITCH RAIN
+glitch_rain() {
+    for i in {1..120}; do
+        echo -ne "\033[38;5;$((RANDOM%200))m#\033[0m"
+        (( i % $(tput cols) == 0 )) && echo
+        sleep 0.003
+    done
+    echo
+}
+
+# PACK 52 — NEON STREAM
+neon_stream() {
+    for i in {1..60}; do
+        printf "\033[38;5;$((RANDOM%255))m—\033[0m"
+        (( i % $(tput cols) == 0 )) && echo
+        sleep 0.01
+    done
+    echo
+}
+
+# PACK 53 — CRYPTIC BLOCK
+cryptic_block() {
+    for i in {1..30}; do
+        echo "$(openssl rand -hex 16 2>/dev/null || head -c16 /dev/urandom | xxd -p) "
+        sleep 0.02
+    done
+}
+
+# PACK 54 — FLICKER GRID
+flicker_grid() {
+    for i in {1..40}; do
+        for c in $(seq 1 $(tput cols)); do
+            printf "\033[38;5;$((RANDOM%200))m#\033[0m"
+        done
+        echo
+        sleep 0.02
+    done
+}
+
+# PACK 55 — STATIC BARRIER
+static_barrier() {
+    for i in {1..30}; do
+        printf "\033[48;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m%*s\033[0m\n" "$(tput cols)" ""
+        sleep 0.01
+    done
+}
+
+# PACK 56 — NIGHT VISION
+night_vision() {
+    for i in {1..60}; do
+        printf "\033[32m.\033[0m"
+        (( i % $(tput cols) == 0 )) && echo
+        sleep 0.004
+    done
+    echo
+}
+
+# PACK 57 — HYPER SPIN
+hyper_spin() {
+    chars='|/-\'
+    for i in {1..200}; do
+        printf "\r\033[38;5;$((RANDOM%200))m%c\033[0m" "${chars:$((i%4)):1}"
+        sleep 0.01
+    done
+    echo
+}
+
+# PACK 58 — CHAOTIC DOTS
+chaotic_dots() {
+    for i in {1..300}; do
+        printf "\033[38;5;$((RANDOM%255))m.\033[0m"
+        (( i % $(tput cols) == 0 )) && echo
+        sleep 0.002
+    done
+    echo
+}
+
+# PACK 59 — FAKE UPDATE
+fake_update() {
+    for i in {1..30}; do
+        echo -e "\033[34m[UPDATE] Applying patch $i of 30...\033[0m"
+        sleep 0.04
+    done
+    echo -e "\033[32m[OK] Patches applied.\033[0m"
+}
+
+# PACK 60 — FINAL GLORY
+final_glory() {
+    for i in {1..80}; do
+        printf "\033[48;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m%*s\033[0m\n" "$(tput cols)" ""
+        sleep 0.01
+    done
+    echo -e "\033[1;35m=== BRUTAL BLOCK COMPLETE ===\033[0m"
+}
+
+# END EXTENSION BLOCK
+##########################################################
