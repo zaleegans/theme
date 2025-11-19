@@ -168,12 +168,14 @@ opening_effect() {
     hacker_boot
 
     # ROTATE LOGO
-    rotate_logo
+    rotate_logo 
 
-    echo
-    echo -e "\e[32m>> ZALEE THEME ENGINE READY <<\e[0m"
-    echo
-}
+reset
+clear
+
+echo
+echo -e "\e[32m>> ZALEE THEME ENGINE READY <<\e[0m"
+echo
 
 opening_effect
 
