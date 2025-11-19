@@ -198,7 +198,6 @@ lightning() {
         printf "\033[?5l" ; sleep 0.05
     done
 }
-
 ######################################################################
 # === BRUTAL PACK v4 LOADED — INSTALL SCRIPT LANJUT DI BAWAH ===     #
 ######################################################################
@@ -345,6 +344,23 @@ done
 echo -e "\b ${GREEN}[READY]${NC}"
 
 # =================== END OF BRUTAL HEADER ======================= #
+# === PANGGIL SEMUA BRUTAL EFFECT ===
+matrix_rain
+sleep 0.3
+glitch "Zaleetheme Loaded"
+sleep 0.3
+rgb_flood
+sleep 0.2
+fire
+sleep 0.2
+rotate_logo
+sleep 0.3
+spin3d
+sleep 0.3
+lightning
+sleep 0.2
+shake
+sleep 0.2
 
 # ============================================================
 #        TEMP ZAL INSTALLER — ULTRA PREMIUM EDITION
