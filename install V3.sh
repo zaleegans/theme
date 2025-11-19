@@ -15,7 +15,102 @@ printf "\n==============================================================\n"
 printf "🔥  Z A L E E T H E M E   B R U T A L   M O D E   L O A D E D  🔥\n"
 printf "==============================================================\n\n"
 printf "${NC}"
+################## PACK 4 — INSANE BRUTAL MODE ##################
 
+# 💥 Full Screen Pulse (detak brutal)
+pulse() {
+    for i in {1..8}; do
+        printf "\033[48;2;255;0;0m%$(tput cols)s\033[0m\r"
+        sleep 0.06
+        printf "\033[48;2;0;0;0m%$(tput cols)s\033[0m\r"
+        sleep 0.06
+    done
+    printf "\n"
+}
+
+# 🌪 Random Terminal Turbulence (layar keputar acak)
+turbulence() {
+    for i in {1..20}; do
+        printf "\033[%d;%dH⚡" $((RANDOM%20+1)) $((RANDOM%50+1))
+        sleep 0.03
+    done
+    printf "\033[0m\n"
+}
+
+# 📡 Distortion Wave (gelombang glitch brutal)
+wave() {
+    for i in {1..25}; do
+        line=$(printf "%*s" $((RANDOM%$(tput cols))) | tr ' ' '~')
+        echo -e "\033[35m$line\033[0m"
+        sleep 0.02
+    done
+}
+
+# 💣 Nuclear Blink (kedip super pedih)
+nuke_flash() {
+    for i in {1..4}; do
+        printf "\033[?5h"; sleep 0.04
+        printf "\033[?5l"; sleep 0.04
+    done
+}
+
+# 🧨 Screen Crack (efek layar pecah ASCII)
+screen_crack() {
+cat << "EOF"
+   \  |  /       *CRACK*
+ --  ███  --   
+   /  |  \  
+EOF
+}
+
+# 🌈 RGB Slide (warna berjalan seluruh layar)
+rgb_slide() {
+    width=$(tput cols)
+    for i in {1..width}; do
+        printf "\033[48;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m "
+        sleep 0.005
+    done
+    printf "\033[0m\n"
+}
+
+# 💀 Hellfire ASCII (banner panas)
+hellfire() {
+cat << "EOF"
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥 H E L L F I R E   M O D E   O N 🔥
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+EOF
+}
+
+# 🚨 Terminal Warning Alarm (sirine brutal)
+alarm() {
+    for i in {1..8}; do
+        echo -ne "\007"  
+        printf "\033[41m!!! ALERT !!!\033[0m\r"
+        sleep 0.1
+        printf "\033[43m!!! ALERT !!!\033[0m\r"
+        sleep 0.1
+    done
+    printf "\n"
+}
+
+##############################################################
+# ==== END PACK 4 — INSANE BRUTAL MODE LOADED 🔥💀 ===========
+##############################################################
+# === BRUTAL COMBO SEQUENCE ===
+matrix_rain
+pulse
+hellfire
+rgb_slide
+glitch "SYSTEM OVERRRIDE"
+turbulence
+fire
+wave
+nuke_flash
+rotate_logo
+lightning
+alarm
+shake
 ################## PACK 1 BASE FUNCTION ##################
 
 typewrite() {
