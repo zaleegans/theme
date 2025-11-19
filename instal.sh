@@ -1450,6 +1450,83 @@ for i in {1..10}; do
 done
 printf "\n"
 
+###########################################
+# 🔥 GLITCH TIER 3 — TERMINAL DOMINATION
+###########################################
+
+# MATRIX RAIN ULTRA
+matrix_rain() {
+    cols=$(tput cols)
+    for _ in {1..40}; do
+        line=""
+        for ((i=0; i<cols; i++)); do
+            rand=$((RANDOM%15))
+            case $rand in
+                0) char="1" ;;
+                1) char="0" ;;
+                2) char="▓" ;;
+                3) char="░" ;;
+                4) char="▄" ;;
+                5) char="█" ;;
+                *) char=" " ;;
+            esac
+            line="${line}${char}"
+        done
+        printf "\033[38;2;0;$((100+RANDOM%155));0m%s\033[0m\n" "$line"
+        sleep 0.03
+    done
+}
+
+# TERMINAL SHAKE ULTRA
+shake_screen() {
+    for _ in {1..18}; do
+        printf "\033[?5h"; sleep 0.04    # invert
+        printf "\033[?5l"; sleep 0.04    # normal
+    done
+}
+
+# RGB RAINFALL
+rgb_rain() {
+    for _ in {1..50}; do
+        printf "\033[38;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m█\033[0m"
+        sleep 0.005
+    done
+    echo ""
+}
+
+# TERMINAL FLICKER
+flicker() {
+    for _ in {1..10}; do
+        printf "\033[30m"; sleep 0.05
+        printf "\033[97m"; sleep 0.05
+    done
+}
+
+# GLITCH STUTTER
+stutter() {
+    text="S Y S T E M  B R E A C H E D . . ."
+    for ((i=0; i<${#text}; i++)); do
+        printf "\033[38;2;$((RANDOM%255));0;0m%s\033[0m" "${text:$i:1}"
+        sleep 0.02
+    done
+    echo ""
+}
+
+##########################
+# 🔥 RUN TIER 3 PACKAGE
+##########################
+echo -e "\033[1;31m>>> GLITCH TIER 3 INITIALIZED <<<\033[0m"
+sleep 0.2
+
+shake_screen
+flicker
+rgb_rain
+stutter
+matrix_rain
+
+echo -e "\033[1;32m>>> TIER 3 COMPLETE — REALITY BENT <<<\033[0m"
+echo ""
+
 sleep 0.3
 clear
 
