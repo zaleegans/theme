@@ -1,12 +1,122 @@
 #!/usr/bin/env bash
-# ZALEE THEME INSTALLER – FINAL POLISHED VERSION
+# ZALEE THEME INSTALLER – ULTRA BRUTAL v2 (FIXED & CLEAN)
 
 set -euo pipefail
 IFS=$'\n\t'
 
-# -------------------------------------
-#  EFFECTS (BANNER + MATRIX + TYPEWRITER)
-# -------------------------------------
+# ============================================
+# ========== EFFECT FUNCTIONS PACK ===========
+# ============================================
+
+cols=$(tput cols)
+
+matrix_rain() {
+    for ((i=0; i<2000; i++)); do
+        printf "\033[38;5;$((RANDOM%82+34))m%s\033[0m" "$(printf '\\\\')"
+        (( i % cols == 0 )) && printf "\n"
+        sleep 0.0005
+    done
+}
+
+glitch() {
+    for i in {1..40}; do
+        printf "\r\033[38;5;$((RANDOM%255))mGL1TCH-$RANDOM\033[0m"
+        sleep 0.04
+    done
+    echo
+}
+
+pulse() {
+    for i in {1..50}; do
+        printf "\033[38;5;$((16 + RANDOM % 200))m████████████████\033[0m\r"
+        sleep 0.03
+    done
+    echo
+}
+
+hellfire() {
+    for i in {1..25}; do
+        printf "\033[1;31m🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\033[0m\n"
+        sleep 0.03
+    done
+}
+
+rgb_wall() {
+    for r in {1..25}; do
+        for ((i=0; i<cols; i++)); do
+            printf "\033[38;5;$((RANDOM%255))m█\033[0m"
+        done
+        printf "\n"
+        sleep 0.01
+    done
+}
+
+turbulence() {
+    for i in {1..150}; do
+        printf "\033[$((RANDOM%20));$((RANDOM%cols))H\033[38;5;$((RANDOM%255))m#\033[0m"
+        sleep 0.002
+    done
+    printf "\033[0m\n"
+}
+
+fire() {
+    for i in {1..40}; do
+        printf "\033[38;5;$((196 + RANDOM%8))m🔥\033[0m"
+        (( i % cols == 0 )) && printf "\n"
+        sleep 0.003
+    done
+    echo
+}
+
+shake() {
+    for i in {1..15}; do
+        printf "\033[2C"; sleep 0.02
+        printf "\033[2D"; sleep 0.02
+    done
+}
+
+lightning() {
+    for i in {1..4}; do
+        printf "\033[1;97m"; printf "%${cols}s" " "; printf "\033[0m\r"
+        sleep 0.06
+    done
+}
+
+nuke_flash() {
+    printf "\033[1;97m"; printf "%${cols}s" " "; printf "\033[0m\r"
+    sleep 0.08
+    shake
+}
+
+hacker_boot() {
+    msgs=(
+        "[BOOT] Initializing ZALEE System..."
+        "[OK] CPU Microcode Loaded"
+        "[OK] Memory Check Passed"
+        "[OK] Loading Kernel Modules"
+        "[OK] Mounting File System"
+        "[OK] Starting Services"
+        "[OK] Ready."
+    )
+    for m in "${msgs[@]}"; do
+        echo -e "\033[38;5;$((RANDOM%50+50))m$m\033[0m"
+        sleep 0.15
+    done
+    echo
+}
+
+rotate_logo() {
+    frames=( "Z" "/" "-" "\\" )
+    for i in {1..12}; do
+        printf "\r\033[1;36m%s\033[0m" "${frames[$((i % 4))]}"
+        sleep 0.1
+    done
+    echo
+}
+
+# ============================================
+# ============= TYPEWRITER + OPENING =========
+# ============================================
 
 typewriter() {
     text="$1"
@@ -19,14 +129,55 @@ typewriter() {
 
 opening_effect() {
     clear
-    echo -e "\e[32m"
-    for i in {1..40}; do
-        printf "%$((RANDOM % 60))s\n" | tr ' ' "$(printf '\\%o' $((RANDOM%93+33)))"
-        sleep 0.015
-    done
-    echo -e "\e[0m"
-    sleep 0.4
+
+    # MATRIX INTRO
+    matrix_rain
     clear
+
+    # GLITCH
+    glitch
+    clear
+
+    # RGB WALL
+    rgb_wall
+    clear
+
+    # ASCII LOGO
+    echo -e "\e[36m"
+    echo "███████╗ █████╗ ██╗     ███████╗███████╗████████╗██╗  ██╗███████╗███╗   ███╗"
+    echo "██╔════╝██╔══██╗██║     ██╔════╝██╔════╝╚══██╔══╝██║  ██║██╔════╝████╗ ████║"
+    echo "███████╗███████║██║     █████╗  ███████╗   ██║   ███████║█████╗  ██╔████╔██║"
+    echo "╚════██║██╔══██║██║     ██╔══╝  ╚════██║   ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║"
+    echo "███████║██║  ██║███████╗███████╗███████║   ██║   ██║  ██║███████╗██║ ╚═╝ ██║"
+    echo "╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝"
+    echo -e "\e[0m"
+    echo
+
+    typewriter "Initializing installer..."
+    typewriter "Preparing modules..."
+    typewriter "Loading theme engine..."
+
+    # FIRE + LIGHTNING
+    hellfire
+    lightning
+    fire
+    nuke_flash
+    clear
+
+    # FAKE BOOT
+    hacker_boot
+
+    # ROTATE LOGO
+    rotate_logo
+
+    echo
+    echo -e "\e[32m>> ZALEE THEME ENGINE READY <<\e[0m"
+    echo
+}
+
+# ============================================
+# ================ RUN INTRO =================
+# ===========================================
 
     echo -e "\e[36m"
     echo "███████╗ █████╗ ██╗     ███████╗███████╗████████╗██╗  ██╗███████╗███╗   ███╗"
@@ -55,162 +206,6 @@ opening_effect() {
 }
 
 opening_effect
-
-##############################################
-# ZALEE FULL EFFECT PACK — PUT AT VERY TOP
-##############################################
-
-# Terminal width helper
-cols=$(tput cols)
-
-##############################################
-# 1. MATRIX RAIN — WIDE
-##############################################
-matrix_rain() {
-    for ((i=0; i<2000; i++)); do
-        printf "\033[38;5;$((RANDOM%82+34))m%s\033[0m" "$(printf '\\\\')"
-        (( i % cols == 0 )) && printf "\n"
-        sleep 0.0005
-    done
-}
-
-##############################################
-# 2. GLITCH SCREEN
-##############################################
-glitch() {
-    for i in {1..40}; do
-        printf "\r\033[38;5;$((RANDOM%255))mGL1TCH-$RANDOM\033[0m"
-        sleep 0.04
-    done
-    echo
-}
-
-##############################################
-# 3. PULSE WAVE (Rainbow pulse)
-##############################################
-pulse() {
-    for i in {1..50}; do
-        printf "\033[38;5;$((16 + RANDOM % 200))m████████████████\033[0m\r"
-        sleep 0.03
-    done
-    echo
-}
-
-##############################################
-# 4. HELLFIRE (Api naik dari bawah)
-##############################################
-hellfire() {
-    for i in {1..25}; do
-        printf "\033[1;31m🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\033[0m\n"
-        sleep 0.03
-    done
-}
-
-##############################################
-# 5. RGB WALL
-##############################################
-rgb_wall() {
-    for r in {1..25}; do
-        for ((i=0; i<cols; i++)); do
-            printf "\033[38;5;$((RANDOM%255))m█\033[0m"
-        done
-        printf "\n"
-        sleep 0.01
-    done
-}
-
-##############################################
-# 6. TURBULENCE (Kekacauan layar)
-##############################################
-turbulence() {
-    for i in {1..150}; do
-        printf "\033[$((RANDOM%20));$((RANDOM%cols))H\033[38;5;$((RANDOM%255))m#\033[0m"
-        sleep 0.002
-    done
-    printf "\033[0m\n"
-}
-
-##############################################
-# 7. FIRE WAVE
-##############################################
-fire() {
-    for i in {1..40}; do
-        printf "\033[38;5;$((196 + RANDOM%8))m🔥\033[0m"
-        (( i % cols == 0 )) && printf "\n"
-        sleep 0.003
-    done
-    echo
-}
-
-##############################################
-# 8. SCREEN SHAKE
-##############################################
-shake() {
-    for i in {1..15}; do
-        printf "\033[2C"; sleep 0.02
-        printf "\033[2D"; sleep 0.02
-    done
-}
-
-##############################################
-# 9. LIGHTNING FLASH
-##############################################
-lightning() {
-    for i in {1..4}; do
-        printf "\033[1;97m"; printf "%${cols}s" " "; printf "\033[0m\r"
-        sleep 0.06
-    done
-}
-
-##############################################
-# 10. NUKE FLASH (WHITE + SHAKE)
-##############################################
-nuke_flash() {
-    printf "\033[1;97m"; printf "%${cols}s" " "; printf "\033[0m\r"
-    sleep 0.08
-    shake
-}
-
-##############################################
-# 11. HACKER BOOT SCREEN
-##############################################
-hacker_boot() {
-    msgs=(
-        "[BOOT] Initializing ZALEE System..."
-        "[OK] CPU Microcode Loaded"
-        "[OK] Memory Check Passed"
-        "[OK] Loading Kernel Modules"
-        "[OK] Mounting File System"
-        "[OK] Starting Services"
-        "[OK] Ready."
-    )
-    for m in "${msgs[@]}"; do
-        echo -e "\033[38;5;$((RANDOM%50+50))m$m\033[0m"
-        sleep 0.15
-    done
-    echo
-}
-
-##############################################
-# 12. ZALEE LOGO ROTATE
-##############################################
-rotate_logo() {
-    frames=(
-"Z"
-"/"
-"-"
-"\\"
-    )
-    for i in {1..12}; do
-        printf "\r\033[1;36m%s\033[0m" "${frames[$((i % 4))]}"
-        sleep 0.1
-    done
-    echo
-}
-
-##############################################
-# DONE – ALL EFFECTS LOADED
-##############################################
 
 # ------------------------------
 # KONFIGURASI
